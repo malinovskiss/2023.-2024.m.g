@@ -16,3 +16,4 @@ class Dators():
     def dati(self):
         print(f"veids ir {self.veids}, modelis ir{self.modelis}, cena - {self.cena}")
 
+  
