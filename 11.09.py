@@ -16,11 +16,3 @@ class Dators():
     def dati(self):
         print(f"veids ir {self.veids}, modelis ir{self.modelis}, cena - {self.cena}")
 
-    def cenas_maina(self, jaunaCena):
-        print(f"Iepriekšējā datora cena - {self.cena}")
-        print(f"Jaunā datora cena - {jaunaCena}")
-
-sastavdala = Dators(modelis="Corsair Vengeance",cena="99,99 EUR")
-
-sastavdala.dati()
-sastavdala.cenas_maina("100 EUR")
