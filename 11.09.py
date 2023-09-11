@@ -14,7 +14,7 @@ class Dators():
         self.cena = cena
 
     def dati(self):
-        print(f"veids ir {self.veids}, modelis ir{self.modelis}, krāsa - {self.cena}")
+        print(f"veids ir {self.veids}, modelis ir{self.modelis}, cena - {self.cena}")
 
     def cenas_maina(self, jaunaCena):
         print(f"Iepriekšējā datora cena - {self.cena}")
