@@ -20,7 +20,11 @@ jauns.apskate()
 #Datu saglabāšana
 def saglabat():
     with open('sastavdalas.txt','w',encoding="utf-8") as fails:
-        fails.write("b")
+        fails.write("")
 jauns = sastavdalas("RAM","Corsair Vengeance LPX 16GB",99.99)
-jauns.apskate() 
+jauns.apskate()
 jauns.saglabat()
+
+import PySimpleGUI as psg
+psg.theme('DarkAmber')
+layout = {(psg.Text("Komponents"))}
