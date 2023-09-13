@@ -18,3 +18,9 @@ jauns.apskate()
 jauns.labosana("GPU","GeForce",75.5)
 jauns.apskate()
 #Datu saglabāšana
+def saglabat():
+    with open('sastavdalas.txt','w',encoding="utf-8") as fails:
+        fails.write("b")
+jauns = sastavdalas("RAM","Corsair Vengeance LPX 16GB",99.99)
+jauns.apskate()
+jauns.saglabat()
