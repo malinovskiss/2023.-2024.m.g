@@ -12,7 +12,7 @@ class sastavdalas():
         print("Cena: ", self.cena)
 
     def saglabat(self):
-        with open('sastavdala.csv', 'w',encoding="utf-8",newline='') as fails:
+        with open('sastavdalas.csv', 'w',encoding="utf-8",newline='') as fails:
             csvwrite = csv.writer(fails)
             csvwrite.writerow(['Veids','Modelis','Cena'])
             csvwrite.writerow([self.veids, self.modelis, self.cena])
