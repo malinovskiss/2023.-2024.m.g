@@ -1,19 +1,20 @@
-class Dators():
-    def _init_(self,veids,modelis,cena):
+import csv
+
+class sastavdalas():
+    def __init__(self, veids, modelis, cena):
         self.veids = veids
         self.modelis = modelis
         self.cena = cena
+    
+    def izdrukat(self):
+        print("Veids: ", self.veids)
+        print("Modelis: ", self.modelis)
+        print("Cena: ", self.cena)
 
-sastavdalas = Dators(veids = "RAM", modelis = "Corsair Vengeance", cena = "99,99 EUR")
-
-print(sastavdalas.modelis)
-
-class Dators():
-    def _init_(self,veids,modelis,cena):
-        self.modelis = cena
-        self.cena = cena
-
-    def dati(self):
-        print(f"veids ir {self.veids}, modelis ir{self.modelis}, cena - {self.cena}")
-
-  
+    def saglabat(self):
+        with open('sastavdala.csv', 'w',encoding="utf-8",newline='') as fails:
+            csvwrite = csv.writer(fails)
+            csvwrite.writerow(['Veids','Modelis','Cena'])
+            csvwrite.writerow([self.veids, self.modelis, self.cena])
+dators = sastavdalas(veids='RAM',modelis= 'Corsair Vengeance LPX 16GB',cena= '99,99 EUR')
+print(dators.veids)
