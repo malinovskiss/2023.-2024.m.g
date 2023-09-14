@@ -17,7 +17,7 @@ class info():
         self.modelis = modelis
         self.cena = cena
     def save(self):
-        with open('info.txt','W', encoding="utf=8") as fails:
+        with open('info.txt','w', encoding="utf=8") as fails:
             fails.write("-personala datora sastavdala-\n")
             fails.write(f"Veids: {self.veids}\n")
             fails.write(f"modelis: {self.modelis}\n")
@@ -29,20 +29,29 @@ jauns.save()
 
 
 psg.theme('darkamber')
-layout = [
-            [psg.Text('Komponentes')]
+logs = [
+            [psg.Text('Komponentes')],
             [psg.Text('Veids')]
           
           ]
 
-layout2 = [[psg.Text('Redigešana')]]
+logs2 = [[psg.Text('Redigēšana')]]
 
-tabgrp = [
+loguGrupa = [[
     psg.TabGroup(
         [
             [
-                psg.Tab('Datu ievade')
+                psg.Tab('Datu ievade',logs),
+                psg.Tab('Datu rediģēšana',logs2)
             ]
         ]
-    )
-]
+    ),
+    psg.Button("Aizvērt")
+]]
+window = psg.Window('Datora komponentes', loguGrupa)
+while True:
+    event,values = window.read()
+    if event in (psg.WIN_CLOSED,'Aizvērt'):
+        break
+
+window.close()
