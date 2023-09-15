@@ -25,7 +25,7 @@ class info():
         with open('info.txt','a', encoding="utf=8") as fails:
             fails.write("-Personālā datora sastāvdaļa-\n")
             fails.write(f"Veids: {self.veids}\n")
-            fails.write(f"modelis: {self.modelis}\n")
+            fails.write(f"Modelis: {self.modelis}\n")
             fails.write(f"Cena: {self.cena} EUR\n")
 
 
