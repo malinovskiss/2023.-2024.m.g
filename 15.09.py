@@ -58,11 +58,10 @@ loguGrupa = [[
             ]
         ]
     ),
-    psg.Button('Aizvērt')
-    
+    [psg.Button('Aizvērt'),
+    psg.Button('Datu apskate')]
     
 ]]
-
 window = psg.Window('Datora komponentes', loguGrupa)
 #Pārbauda notikumus grafiskajā saskarnē
 while True:
@@ -82,8 +81,15 @@ while True:
         veids = values[3]
         modelis = values[4]
         cena = values [5]
-        jauns = info(veids,modelis,cena)
+        jauns.labosana(veids,modelis,cena)
         jauns.apskate()
+    if event == "Datu apskate":
+        psg.theme("BlueMono")
+        layout = [
+                  [psg.Text("Esošās komponentes")],
+                  [psg.Text("Veids: * + values[0]")]
+        ]
+        psg.Text
     
     if event in (psg.WIN_CLOSED,'Aizvērt'):
         break
