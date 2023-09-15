@@ -1,97 +1,98 @@
+#minimālās prasības
+class datora_sastavdala():
+    def __init__(self, veids, modelis, cena):
+        self.veids = veids
+        self.modelis = modelis
+        self.cena = cena
+
+    
+    def izdrukat(self):
+        print("Veids: ", self.veids)
+        print("Modelis: ", self.modelis)
+        print("Cena: ", self.cena)
+    
+    def labosana(self,veids,modelis,cena):
+        self.veids = veids
+        self.modelis = modelis
+        self.cena = cena
+
+    def saglabat(self):
+        
+        with open('sastavdalas.txt', 'w', encoding="utf-8") as fails :
+            fails.write("-datora sastāvdaļas-")
+            fails.write(" \n")
+            fails.write(str(dators.veids))
+            fails.write(" \n")
+            fails.write(str(dators.modelis))
+            fails.write(" \n")
+            fails.write(str(dators.cena))
+
+dators = datora_sastavdala(veids='RAM',modelis= 'Corsair Vengeance LPX 16GB',cena= '99,99 EUR')
+dators.izdrukat()
+
+
+#datu saglabāšana
+
+dators.saglabat()
+
 import PySimpleGUI as psg
 
-#minimalas prasības
-class info():
-    def __init__(self,veids, modelis, cena):
-        self.veids = veids
-        self.modelis = modelis
-        self.cena = cena
-
-    def apskate(self):
-        print(self.modelis)
-        print(self.cena)
-        print(self.veids)
-
-    def labosana(self, veids, modelis,cena,):
-        self.veids = veids
-        self.modelis = modelis
-        self.cena = cena
-        with open('info.txt',encoding="utf=8") as file:
-            lines = file.readline()
+psg.theme('DarkAmber')
+logs = [
+        [psg.Text('Komponents')],
+        [psg.Text('Veids'),psg.InputText()],
+        [psg.Text('Modelis'),psg.InputText()],
+        [psg.Text('Cena'),psg.InputText()],
+        [psg.Button('Saglabāt')]
+]
+logs2 = [
+    [psg.Text("Rediģēšana")],
+    [psg.Text('Veids'),psg.InputText()],
+    [psg.Text('Modelis'),psg.InputText()],
+    [psg.Text('Cena'),psg.InputText()],
+    [psg.Button('Rediģēt')]    
     
-    
-    
-    def save(self):
-        with open('info.txt','a', encoding="utf=8") as fails:
-            fails.write("-Personālā datora sastāvdaļa-\n")
-            fails.write(f"Veids: {self.veids}\n")
-            fails.write(f"Modelis: {self.modelis}\n")
-            fails.write(f"Cena: {self.cena} EUR\n")
+]
 
-
-psg.theme('darkamber')
-layout = [
-            [psg.Text('Komponentes')],
-            [psg.Text('Veids'),psg.InputText()],    
-            [psg.Text('Modelis'),psg.InputText()],
-            [psg.Text('Cena'),psg.InputText()],
-            [psg.Button('Saglabāt')]
-            
-          ]
-
-layout2 = [
-            [psg.Text('Redigēšana')], 
-            [psg.Text('Veids'),psg.InputText()],    
-            [psg.Text('Modelis'),psg.InputText()],
-            [psg.Text('Cena'),psg.InputText()],
-            [psg.Button('Saglabāt')]
-        
-        ]
-
-loguGrupa = [[
+logugrupa = [[
     psg.TabGroup(
         [
-            [
-                psg.Tab('Datu ievade', layout),
-                psg.Tab('Datu redigēšana', layout2)
-            
-            ]
+         [
+            psg.Tab('Datu ievade',logs),
+            psg.Tab('Datu rediģēšana',logs2)
+         ]   
         ]
     ),
-    [psg.Button('Aizvērt'),
-    psg.Button('Datu apskate')]
-    
+    psg.Button('Aizvērt')
 ]]
-window = psg.Window('Datora komponentes', loguGrupa)
-#Pārbauda notikumus grafiskajā saskarnē
-while True:
-    event,values = window.read() 
-    #Nolasa ievadītās vērtības un darbības
-    #Apgalvojumi
-    if event == "Saglabāt":
-        print(values)
-        veids = values[0]
-        modelis = values[1]
-        cena = values [2]
-        jauns = info(veids,modelis,cena)
-        jauns.apskate()
+window = psg.Window('Datora komponentes', logugrupa)
 
-    if event == "Rediģēšana":
-        print(values)
+while True:
+    event,values = window.read()
+    
+    if event == "Saglabāt":
+        veids =  values[0]
+        modelis = values[1]
+        cena = values[2]
+        dators = datora_sastavdala(veids,modelis,cena)
+        dators.saglabat()
+        
+    if event == "Rediģēt":
         veids = values[3]
         modelis = values[4]
-        cena = values [5]
-        jauns.labosana(veids,modelis,cena)
-        jauns.apskate()
-    if event == "Datu apskate":
+        cena = values[5]
+        dators.labosana(veids,modelis,cena)
+        dators.saglabat()
+
+if event == "Datu apskate":
         psg.theme("BlueMono")
         layout = [
                   [psg.Text("Esošās komponentes")],
-                  [psg.Text("Veids: * + values[0]")]
-        ]
-        psg.Text
+                  [psg.Text("Veids: " + values[0])],
+                  [psg.Text(
     
-    if event in (psg.WIN_CLOSED,'Aizvērt'):
+    if event in (psg.WIN_CLOSED, 'Aizvērt'):
         break
+    
 
 window.close()
