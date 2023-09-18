@@ -1,5 +1,5 @@
 class Sastavdala():
-    #Konstruktora izveide
+   
     def __init__(self,veids, modelis, cena):
         self.veids = veids
         self.modelis = modelis
@@ -18,10 +18,6 @@ class Sastavdala():
     def saglabat(self):
         with open('sastavdalas.txt','w',encoding="utf-8") as fails:
             fails.write(self.modelis)
-
-# jauns = Sastavdala("RAM","Corsair Vengeance LPX 16GB",99.99)
-# jauns.apskate()
-# jauns.saglabat()
 
 import PySimpleGUI as psg
 
@@ -57,7 +53,7 @@ while True:
     event,values = window.read() #Nolasa ievadītās vērtības un darbības
     #Apgalvojumi
     if event == "Saglabāt":
-        print(values) #Dati tiek glabāti vārdnīcā (dictionary), piekļūst, izmantojot atslēgas vērtības
+        print(values) 
         veids = values[0]
         modelis = values[1]
         cena = values[2]
