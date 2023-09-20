@@ -1,4 +1,6 @@
-import PySimpleGUI as psg
+import PySimpleGUI as sg
+
+
 
 class noma():
     def __init__(self, Produkta_kategorija, Produkta_nosaukums, Tehniskie_raksturojumi, Nomas_cena_diena, Produkts_pieejams, Nomnieks_vards, Nomnieks_uzvards, Nomnieks_pk,Nomnieks_tel_numurs, Nomas_sakuma_datums, Nomas_beigu_datums):
@@ -13,48 +15,29 @@ class noma():
         self.Nomnieks_tel_numurs = Nomnieks_tel_numurs
         self.Nomas_sakuma_datums = Nomas_sakuma_datums
         self.Nomas_beigu_datums = Nomas_beigu_datums
-        
     def produktu_info(self):
-          pass
-
-psg.theme('darkamber')
-layout = [
-    [psg.Text('a')]
-]
-
-window = psg.Window('Produkts_pieejams', layout)
-
-layout = [
-            [psg.Text('Komponentes')],
-            [psg.Text('Veids'),psg.InputText()],    
-            [psg.Text('Modelis'),psg.InputText()],
-            [psg.Text('Cena'),psg.InputText()],
-            [psg.Button('Saglabāt')]
-            
-          ]
-
-layout2 = [
-            [psg.Text('Redigēšana')], 
-            [psg.Text('Veids'),psg.InputText()],    
-            [psg.Text('Modelis'),psg.InputText()],
-            [psg.Text('Cena'),psg.InputText()],
-            [psg.Button('Saglabāt')]
+        pass
         
-        ]
+    def save(self):
+        with open('info.txt','w', encoding="utf=8") as fails:
+            fails.write('noma')
+            fails.write(self.Produkta_kategorija)
+            fails.write(self.Produkta_nosaukums)
+            fails.write(self.Tehniskie_raksturojumi)
+            fails.write(self.Nomas_cena_diena)
+            fails.write(self.Produkts_pieejams)
+            fails.write(self.Nomnieks_vards)
+            fails.write(self.Nomnieks_uzvards)
+            fails.write(self.Nomnieks_pk)
+            fails.write(self.Nomnieks_tel_numurs)
+            fails.write(self.Nomas_sakuma_datums)
+            fails.write(self.Nomas_beigu_datums)
+sg.theme('darkamber')
 
-loguGrupa = [[
-    psg.TabGroup(
-        [
-            [
-                psg.Tab('Produkta info', layout),
-                psg.Tab('Nomnieka info', layout2)
-            
-            ]
-        ]
-    ),
-[psg.Button('Aizvērt'),
-    psg.Button('Datu apskate')]
-
-]]
-
+layout = [ 
+        [sg.Text('ievadi produkta informaciju')],
+        [sg.Text('Produkta kategorija'), sg.InputText()],
+        [sg.Text('Produkta nosaukums'), sg.InputText()],
+        [sg.Text('Produkta raksturojums'), sg.InputText()],
+        
 window.close() 
