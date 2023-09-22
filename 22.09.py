@@ -74,11 +74,11 @@ window =psg.Window('Noma', Tabgroup)
 while True:
     event, values = window.read()
     if event == psg.WIN_CLOSED or event == 'Cancel': 
-        break
+        break 
     print(values[0])
     
 if event in (psg,'labi'):
         save = Noma(values[0],values[2],values[3],values[4],values[5])
         save.save()
 
-window.close()
+window.close() 
