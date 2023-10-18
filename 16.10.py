@@ -1,4 +1,4 @@
 import mysql.connector
 
-db= mysql.connector(host="localhost",database"biblioteka",password"Igars000")
+db = mysql.connector.connect(host= 'localhost',database='biblioteka',user='root',password='Igars000')
 print(db)
