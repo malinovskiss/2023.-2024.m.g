@@ -6,7 +6,7 @@ print(db)
 cursor = db.cursor()
 
 sql = ("""
-insert into dakteris (lasitajs, gramatas, autors)
+insert into lasitajs (lasitajs, gramatas, autors)
 values (%s,%s,%s,%s);
         """)
 
