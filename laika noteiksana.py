@@ -1,15 +1,24 @@
-#Laika noteiksana
+#Laika noteikšana
 
 import requests
 
-URL = "https://worldtimeapi.org/timezone/Europe/Riga"
+URL = "http://worldtimeapi.org/api/timezone/Europe/Riga"
 
 dati = requests.get(URL)
 
-print(dati)
+print (dati)
 
 laiksLatvija = dati.json()
 
 print(laiksLatvija)
 
-print(laiksLatvija(["utc_datetime"]))
+print(laiksLatvija["utc_datetime"])
+
+URL2 = "https://worldtimeapi.org/api/timezone/America/New_York"
+
+dati2 = requests.get(URL2)
+
+laiksNewYork = dati2.json()
+
+print(laiksNewYork)
+print(laiksNewYork["datetime"])
