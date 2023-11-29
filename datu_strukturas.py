@@ -1,5 +1,4 @@
 from collections import deque
-
 rinda = deque()
 
 rinda.append(['A','B','C'])
