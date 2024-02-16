@@ -1,102 +1,102 @@
 import json
 
-class Recipe:
-    def __init__(self, title, description, ingredients, steps, cooking_time):
-        self.title = title
-        self.description = description
-        self.ingredients = ingredients
-        self.steps = steps
-        self.cooking_time = cooking_time
+class Recepte:
+    def __init__(self, nosaukums, apraksts, sastavdalas, soļi, gatavosanas_laiks):
+        self.nosaukums = nosaukums
+        self.apraksts = apraksts
+        self.sastavdalas = sastavdalas
+        self.solu_saraksts = soļi
+        self.gatavosanas_laiks = gatavosanas_laiks
 
-    def display_recipe(self):
-        print(f"Title: {self.title}")
-        print(f"Description: {self.description}")
-        print("Ingredients:")
-        for ingredient in self.ingredients:
-            print(f"- {ingredient}")
-        print("Steps:")
-        for i, step in enumerate(self.steps, start=1):
-            print(f"{i}. {step}")
-        print(f"Cooking Time: {self.cooking_time} minutes\n")
+    def paradi_recepti(self):
+        print(f"Nosaukums: {self.nosaukums}")
+        print(f"Apraksts: {self.apraksts}")
+        print("Sastāvdaļas:")
+        for sastavdala in self.sastavdalas:
+            print(f"- {sastavdala}")
+        print("Gatavošanas soli:")
+        for i, solis in enumerate(self.solu_saraksts, start=1):
+            print(f"{i}. {solis}")
+        print(f"Gatavošanas laiks: {self.gatavosanas_laiks} minūtes\n")
 
 
-class DigitalCookingAssistant:
+class DigitalaisEdienaPaligs:
     def __init__(self):
-        self.recipes = []
+        self.receptes = []
 
-    def load_recipes(self, filename="recipes.json"):
+    def ielade_receptes(self, fails="receptes.json"):
         try:
-            with open(filename, "r") as file:
-                data = json.load(file)
-                for recipe_data in data["recipes"]:
-                    recipe = Recipe(**recipe_data)
-                    self.recipes.append(recipe)
+            with open(fails, "r") as fails:
+                dati = json.load(fails)
+                for receptes_dati in dati["receptes"]:
+                    recepte = Recepte(**receptes_dati)
+                    self.receptes.append(recepte)
         except FileNotFoundError:
-            print(f"File {filename} not found. No recipes loaded.")
+            print(f"Fails {fails} nav atrasts. Nav ielādētas nekādas receptes.")
 
-    def save_recipes(self, filename="recipes.json"):
-        data = {"recipes": []}
-        for recipe in self.recipes:
-            recipe_data = {
-                "title": recipe.title,
-                "description": recipe.description,
-                "ingredients": recipe.ingredients,
-                "steps": recipe.steps,
-                "cooking_time": recipe.cooking_time,
+    def saglabaj_receptes(self, fails="receptes.json"):
+        dati = {"receptes": []}
+        for recepte in self.receptes:
+            receptes_dati = {
+                "nosaukums": recepte.nosaukums,
+                "apraksts": recepte.apraksts,
+                "sastavdalas": recepte.sastavdalas,
+                "soļi": recepte.solu_saraksts,
+                "gatavosanas_laiks": recepte.gatavosanas_laiks,
             }
-            data["recipes"].append(recipe_data)
+            dati["receptes"].append(receptes_dati)
 
-        with open(filename, "w") as file:
-            json.dump(data, file, indent=2)
-        print(f"Recipes saved to {filename}.")
+        with open(fails, "w") as fails:
+            json.dump(dati, fails, indent=2)
+        print(f"Receptes saglabātas failā {fails}.")
 
-    def add_recipe(self, recipe):
-        self.recipes.append(recipe)
-        print(f"Recipe '{recipe.title}' added successfully.")
+    def pievieno_recepti(self, recepte):
+        self.receptes.append(recepte)
+        print(f"Recepte '{recepte.nosaukums}' veiksmīgi pievienota.")
 
-    def display_recipes(self):
-        for i, recipe in enumerate(self.recipes, start=1):
-            print(f"{i}. {recipe.title}")
+    def paradi_receptes(self):
+        for i, recepte in enumerate(self.receptes, start=1):
+            print(f"{i}. {recepte.nosaukums}")
 
-    def get_recipe_by_index(self, index):
+    def iegut_recepti_pa_indeksu(self, indekss):
         try:
-            return self.recipes[index - 1]
+            return self.receptes[indekss - 1]
         except IndexError:
-            print("Invalid recipe index.")
+            print("Nederīgs receptes indekss.")
             return None
 
 
-# Example usage:
-assistant = DigitalCookingAssistant()
-assistant.load_recipes()
+# Piemēra izmantošana:
+paligs = DigitalaisEdienaPaligs()
+paligs.ielade_receptes()
 
 while True:
-    print("\nDigital Cooking Assistant Menu:")
-    print("1. Display Recipes")
-    print("2. Add Recipe")
-    print("3. Exit")
+    print("\nDigitālais Ēdiena Gatavošanas Palīgs - Izvēlne:")
+    print("1. Parādīt Receptes")
+    print("2. Pievienot Recepti")
+    print("3. Iziet")
 
-    choice = input("Enter your choice (1/2/3): ")
+    izvele = input("Ievadiet izvēli (1/2/3): ")
 
-    if choice == "1":
-        assistant.display_recipes()
-        recipe_index = int(input("Enter the recipe number to view details (0 to go back): "))
-        if recipe_index != 0:
-            recipe = assistant.get_recipe_by_index(recipe_index)
-            if recipe:
-                recipe.display_recipe()
-    elif choice == "2":
-        title = input("Enter recipe title: ")
-        description = input("Enter recipe description: ")
-        ingredients = input("Enter ingredients (comma-separated): ").split(", ")
-        steps = input("Enter cooking steps (comma-separated): ").split(", ")
-        cooking_time = int(input("Enter cooking time (in minutes): "))
+    if izvele == "1":
+        paligs.paradi_receptes()
+        receptes_indekss = int(input("Ievadiet receptes numuru, lai redzētu detalizētu informāciju (0, lai atgrieztos): "))
+        if receptes_indekss != 0:
+            recepte = paligs.iegut_recepti_pa_indeksu(receptes_indekss)
+            if recepte:
+                recepte.paradi_recepti()
+    elif izvele == "2":
+        nosaukums = input("Ievadiet receptes nosaukumu: ")
+        apraksts = input("Ievadiet receptes aprakstu: ")
+        sastavdalas = input("Ievadiet sastāvdaļas (atslēgas, atdalītas ar komatiem): ").split(", ")
+        soli_saraksts = input("Ievadiet gatavošanas soļus (atslēgas, atdalītas ar komatiem): ").split(", ")
+        gatavosanas_laiks = int(input("Ievadiet gatavošanas laiku (minūtēs): "))
 
-        new_recipe = Recipe(title, description, ingredients, steps, cooking_time)
-        assistant.add_recipe(new_recipe)
-        assistant.save_recipes()
-    elif choice == "3":
-        print("Exiting Digital Cooking Assistant. Goodbye!")
+        jauna_recepte = Recepte(nosaukums, apraksts, sastavdalas, soli_saraksts, gatavosanas_laiks)
+        paligs.pievieno_recepti(jauna_recepte)
+        paligs.saglabaj_receptes()
+    elif izvele == "3":
+        print("Iziet no Digitālā Ēdiena Gatavošanas Palīga. Uz redzēšanos!")
         break
     else:
-        print("Invalid choice. Please enter 1, 2, or 3.")
+        print("Nederīga izvēle. Lūdzu, ievadiet 1, 2 vai 3.")
